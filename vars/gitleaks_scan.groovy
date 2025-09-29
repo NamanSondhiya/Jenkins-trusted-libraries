@@ -1,3 +1,6 @@
-def call(boolean break) {
-	sh 'gitleaks detect --source . -r gitleaks-report.json -f json || "${break}"'
+def call(boolean enforce) {
+	sh "gitleaks detect --source . -r gitleaks-report.json -f json"
+	if (enforce) {
+		sh 'gitleaks detect --source . -r gitleaks-report.json -f json || true' 
+	}
 }
