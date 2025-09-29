@@ -1,9 +1,12 @@
-def call(String Envir, String projectName, String projectKey, String credentialsId) {
-    withCredentials([string(credentialsId:"${credentialsId}", variable: 'SONAR_TOKEN')]) {
+def call(String Envir, String projectName, String projectKey) {
+    withCredentials([string(credentialsId:"SonarToken", variable: 'SONAR_TOKEN')]) {
         withEnv(["SONAR_TOKEN=${SONAR_TOKEN}"]) {
-        sh """${Envir}/bin/sonar-scanner \
-            -Dsonar.projectName=${projectName} \
-            -Dsonar.projectKey=${projectKey} \
+            sh """${Envir}/bin/sonar-scanner \
+                -Dsonar.projectName=${projectName} \
+                -Dsonar.projectKey=${projectKey} \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=\${SONAR_HOST_URL:-http://localhost:9000} \
+                -Dsonar.login=\${SONAR_TOKEN}
             """
         }
     }
