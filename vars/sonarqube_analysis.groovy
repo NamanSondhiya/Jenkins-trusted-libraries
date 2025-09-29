@@ -6,7 +6,7 @@ def call(String Envir, String projectName, String projectKey) {
                 -Dsonar.projectName=${projectName} \
                 -Dsonar.projectKey=${projectKey} \
                 -Dsonar.sources=. \
-                -DSonar.exclusions=venv/**, node_modules/**
+                -DSonar.exclusions=venv/**, node_modules/** \
                 -Dsonar.host.url=\${SONAR_HOST_URL:-http://localhost:9000} \
                 -Dsonar.login=\${SONAR_TOKEN}
                 """
