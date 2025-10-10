@@ -1,3 +1,3 @@
 def call(){
-  sh "docker-compose down && docker-compose up -d > logs.txt"
+  sh "docker-compose down && docker-compose up --build -d > logs.txt"
 }
