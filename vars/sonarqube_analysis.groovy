@@ -1,4 +1,4 @@
-def call(String enVir, String projectName, String projectKey) {
+def call(String enVir, String projectName, String projectKey, String lang) {
     withSonarQubeEnv('Sonar') {
         withCredentials([string(credentialsId: "SonarToken", variable: 'SONAR_TOKEN')]) {
             sh  """
@@ -6,6 +6,7 @@ def call(String enVir, String projectName, String projectKey) {
                 -Dsonar.projectName=${projectName} \
                 -Dsonar.projectKey=${projectKey} \
                 -Dsonar.sources=. \
+                -Dsonar.language=${lang}
                 -Dsonar.host.url=${SONAR_HOST_URL} \
                 -Dsonar.login=${SONAR_TOKEN}
                 """
