@@ -6,7 +6,7 @@ def call(String enVir, String projectName, String projectKey, String lang) {
                 -Dsonar.projectName=${projectName} \
                 -Dsonar.projectKey=${projectKey} \
                 -Dsonar.sources=. \
-                -Dsonar.language=${lang}
+                -Dsonar.language=${lang} \
                 -Dsonar.host.url=${SONAR_HOST_URL} \
                 -Dsonar.login=${SONAR_TOKEN}
                 """
